@@ -4,6 +4,7 @@
 import type {
   BaseContract,
   BigNumber,
+  BigNumberish,
   BytesLike,
   CallOverrides,
   ContractTransaction,
@@ -19,36 +20,34 @@ import type {
   TypedEvent,
   TypedListener,
   OnEvent,
-} from "./common";
+} from "../../../../common";
 
-export interface GreeterInterface extends utils.Interface {
+export interface IERC721ReceiverInterface extends utils.Interface {
   functions: {
-    "greet()": FunctionFragment;
-    "setGreeting(string)": FunctionFragment;
+    "onERC721Received(address,address,uint256,bytes)": FunctionFragment;
   };
 
-  getFunction(
-    nameOrSignatureOrTopic: "greet" | "setGreeting"
-  ): FunctionFragment;
+  getFunction(nameOrSignatureOrTopic: "onERC721Received"): FunctionFragment;
 
-  encodeFunctionData(functionFragment: "greet", values?: undefined): string;
-  encodeFunctionData(functionFragment: "setGreeting", values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "onERC721Received",
+    values: [string, string, BigNumberish, BytesLike]
+  ): string;
 
-  decodeFunctionResult(functionFragment: "greet", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "setGreeting",
+    functionFragment: "onERC721Received",
     data: BytesLike
   ): Result;
 
   events: {};
 }
 
-export interface Greeter extends BaseContract {
+export interface IERC721Receiver extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: GreeterInterface;
+  interface: IERC721ReceiverInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
@@ -70,43 +69,51 @@ export interface Greeter extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    greet(overrides?: CallOverrides): Promise<[string]>;
-
-    setGreeting(
-      _greeting: string,
+    onERC721Received(
+      operator: string,
+      from: string,
+      tokenId: BigNumberish,
+      data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
   };
 
-  greet(overrides?: CallOverrides): Promise<string>;
-
-  setGreeting(
-    _greeting: string,
+  onERC721Received(
+    operator: string,
+    from: string,
+    tokenId: BigNumberish,
+    data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   callStatic: {
-    greet(overrides?: CallOverrides): Promise<string>;
-
-    setGreeting(_greeting: string, overrides?: CallOverrides): Promise<void>;
+    onERC721Received(
+      operator: string,
+      from: string,
+      tokenId: BigNumberish,
+      data: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<string>;
   };
 
   filters: {};
 
   estimateGas: {
-    greet(overrides?: CallOverrides): Promise<BigNumber>;
-
-    setGreeting(
-      _greeting: string,
+    onERC721Received(
+      operator: string,
+      from: string,
+      tokenId: BigNumberish,
+      data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    greet(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    setGreeting(
-      _greeting: string,
+    onERC721Received(
+      operator: string,
+      from: string,
+      tokenId: BigNumberish,
+      data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
   };

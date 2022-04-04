@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "hardhat test",
+    "deploy": "NETWORK=ropsten hardhat run ./scripts/deploy.ts"
   },
   "keywords": [],
   "author": "",
@@ -41,5 +42,8 @@
     "ts-node": "^10.7.0",
     "typechain": "^8.0.0",
     "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.5.0"
   }
 }
