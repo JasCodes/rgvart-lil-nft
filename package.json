@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "hardhat test",
-    "deploy": "NETWORK=ropsten hardhat run ./scripts/deploy.ts"
+    "compile": "hardhat compile",
+    "clean": "hardhat clean",
+    "deploy": "NETWORK=rinkeby hardhat run ./scripts/deploy.ts"
   },
   "keywords": [],
   "author": "",

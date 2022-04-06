@@ -21,5 +21,7 @@ module.exports = {
       { ignores: ["modules"] },
     ],
     camelcase: "off",
+    "no-console": "off",
+    "no-unused-vars": "warn",
   },
 };
