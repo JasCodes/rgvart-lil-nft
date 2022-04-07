@@ -1,6 +1,6 @@
-import { ethers, network } from "hardhat";
+import { ethers, network, run } from "hardhat";
 // eslint-disable-next-line node/no-missing-import
-import { RGVERC721__factory } from "../typechain-types";
+import { RGVLILRinkeby__factory } from "../typechain-types";
 
 async function main() {
   console.log(network.name);
@@ -11,17 +11,34 @@ async function main() {
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  const RGVERC721 = new RGVERC721__factory(deployer);
-  const lil = await RGVERC721.deploy(
-    "RGVart - Love is Love NFT Collection",
-    "LIL",
-    "",
-    "ipfs://bafkreibif7kntrgvu36pvqnrkd6rwrel3uxwewufwc5iyjbd42pzughaoi",
-    ethers.utils.parseEther("0.01"),
-    10
-  );
+  const LIL = new RGVLILRinkeby__factory(deployer);
+  const lil = await LIL.deploy();
   console.log("Deployment Started...");
-  console.log("LoveIsLoveCollection is deployed to:", lil.address);
+  console.log("RGVart - LoveIsLove Collection is deployed to:", lil.address);
+  await etherscan_verify(lil.address);
+}
+
+async function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+async function etherscan_verify(address: string) {
+  try {
+    await run("verify:verify", {
+      network: network.name,
+      contract: "contracts/rgv_lil_rinkeby.sol:RGVLILRinkeby",
+      address,
+      cconstructorArguments: [],
+    });
+  } catch (e) {
+    const message = (e as Error).message;
+    console.log(message);
+    if (message.includes("Already Verified")) {
+      console.log(`Contract: ${address} verified on Etherscan`);
+      return;
+    }
+    await sleep(2000);
+    await await etherscan_verify(address);
+  }
 }
 
 main().catch((error) => {

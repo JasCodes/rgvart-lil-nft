@@ -26,3 +26,5 @@ export type { IERC165 } from "./@openzeppelin/contracts/utils/introspection/IERC
 export { IERC165__factory } from "./factories/@openzeppelin/contracts/utils/introspection/IERC165__factory";
 export type { RGVERC721 } from "./contracts/rgv_erc721.sol/RGVERC721";
 export { RGVERC721__factory } from "./factories/contracts/rgv_erc721.sol/RGVERC721__factory";
+export type { RGVLILRinkeby } from "./contracts/rgv_lil_rinkeby.sol/RGVLILRinkeby";
+export { RGVLILRinkeby__factory } from "./factories/contracts/rgv_lil_rinkeby.sol/RGVLILRinkeby__factory";

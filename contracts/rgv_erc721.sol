@@ -13,7 +13,7 @@ contract RGVERC721 is ERC721Enumerable, Ownable {
     string baseURI;
     string public baseExtension = ".json";
     uint256 public cost;
-    uint256 public maxSupply = 170;
+    uint256 public maxSupply;
     bool public paused = false;
     bool public revealed = false;
     string public notRevealedUri;
@@ -24,9 +24,11 @@ contract RGVERC721 is ERC721Enumerable, Ownable {
         string memory _initBaseURI,
         string memory _initNotRevealedUri,
         uint256 _initCost,
+        uint256 _maxSupply,
         uint256 _initMintCount
     ) ERC721(_name, _symbol) {
         cost = _initCost;
+        maxSupply = _maxSupply;
         setBaseURI(_initBaseURI);
         setNotRevealedURI(_initNotRevealedUri);
         if (_initMintCount > 0) mint(_initMintCount);

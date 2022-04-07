@@ -2,3 +2,4 @@
 /* tslint:disable */
 /* eslint-disable */
 export * as rgvErc721Sol from "./rgv_erc721.sol";
+export * as rgvLilRinkebySol from "./rgv_lil_rinkeby.sol";

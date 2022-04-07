@@ -3,3 +3,5 @@
 /* eslint-disable */
 import type * as rgvErc721Sol from "./rgv_erc721.sol";
 export type { rgvErc721Sol };
+import type * as rgvLilRinkebySol from "./rgv_lil_rinkeby.sol";
+export type { rgvLilRinkebySol };

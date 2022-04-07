@@ -7,7 +7,7 @@
     "test": "hardhat test",
     "compile": "hardhat compile",
     "clean": "hardhat clean",
-    "deploy": "NETWORK=rinkeby hardhat run ./scripts/deploy.ts"
+    "deploy:rinkeby": "NETWORK=rinkeby hardhat run ./scripts/deploy_rinkeby.ts"
   },
   "keywords": [],
   "author": "",

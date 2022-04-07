@@ -52,6 +52,10 @@ declare module "hardhat/types/runtime" {
       name: "RGVERC721",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.RGVERC721__factory>;
+    getContractFactory(
+      name: "RGVLILRinkeby",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.RGVLILRinkeby__factory>;
 
     getContractAt(
       name: "Ownable",
@@ -103,6 +107,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.RGVERC721>;
+    getContractAt(
+      name: "RGVLILRinkeby",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.RGVLILRinkeby>;
 
     // default types
     getContractFactory(
