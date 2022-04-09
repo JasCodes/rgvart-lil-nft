@@ -6,7 +6,7 @@ import "./rgv_erc721.sol";
 contract RGVLILRinkeby is RGVERC721 {
     constructor()
         RGVERC721(
-            "RGVart - Love is Love NFT Collection",
+            "RGVart NFT - Love is Love Collection Testnet1",
             "LIL",
             "",
             "ipfs://bafkreibif7kntrgvu36pvqnrkd6rwrel3uxwewufwc5iyjbd42pzughaoi",
